@@ -39,5 +39,5 @@ jobs:
         run: |
           echo "::set-output name=mandatory_char::$(echo $INPUT_MANDATORY_CHAR)";
           echo "::set-output name=optional_chars::$(echo $INPUT_OPTIONAL_CHARS)";
-          python run.py ${INPUT_MANDATORY_CHAR} ${INPUT_OPTIONAL_CHARS};
+          PARAULOGIC_RESULT="$(python run.py ${INPUT_MANDATORY_CHAR} ${INPUT_OPTIONAL_CHARS})";
           echo "::set-output name=result::$(echo $PARAULOGIC_RESULT)";
