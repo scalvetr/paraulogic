@@ -1,6 +1,9 @@
 import csv
+import os
 import sys
 import unidecode
+
+
 # import requests
 
 
@@ -27,9 +30,21 @@ def match(word, mandatory_char, optional_chars):
     return len(remaining_characters) == 0
 
 
+def listToString(s):
+    # initialize an empty string
+    str1 = ""
+
+    # traverse in the string
+    for ele in s:
+        str1 += ele
+
+        # return string
+    return str1
+
+
 # Option 1: Remote URL
-#url = "https://raw.githubusercontent.com/Softcatala/catalan-dict-tools/master/resultats/lt/diccionari.txt"
-#data = requests.get(url).text
+# url = "https://raw.githubusercontent.com/Softcatala/catalan-dict-tools/master/resultats/lt/diccionari.txt"
+# data = requests.get(url).text
 
 # Option 2: Local file
 url = "diccionari.txt"
@@ -59,5 +74,6 @@ for row in reader:
         result.append(word)
 
 result = list(dict.fromkeys(result))
+os.environ["PARAULOGIC_RESULT"] = listToString(result)
 print("S'han trobat {} resultats".format(len(result)))
 print(result)

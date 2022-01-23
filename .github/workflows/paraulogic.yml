@@ -15,6 +15,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      INPUT_MANDATORY_CHAR: ${{ github.event.inputs.mandatory_char }}
+      INPUT_OPTIONAL_CHARS: ${{ github.event.inputs.optional_chars }}
+    outputs:
+      mandatory_char: ${{ steps.execute.outputs.mandatory_char }}
+      optional_chars: ${{ steps.execute.outputs.optional_chars }}
+      result: ${{ steps.execute.outputs.result }}
     steps:
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content to github runner.
@@ -27,6 +34,10 @@ jobs:
           python -VV
           python -m site
           python -m pip install --upgrade unidecode
-      - name: execute py script # run the run.py to get the latest data
+      - id: execute
+        name: "Run"
         run: |
-          python run.py ${INPUT_MANDATORY_CHAR} ${INPUT_OPTIONAL_CHARS}
+          echo "::set-output name=mandatory_char::$(echo $INPUT_MANDATORY_CHAR)";
+          echo "::set-output name=optional_chars::$(echo $INPUT_OPTIONAL_CHARS)";
+          python run.py ${INPUT_MANDATORY_CHAR} ${INPUT_OPTIONAL_CHARS};
+          echo "::set-output name=result::$(echo $PARAULOGIC_RESULT)";
