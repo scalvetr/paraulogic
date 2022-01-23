@@ -1,14 +1,16 @@
 name: paraulogic
 
-on: push
-
-inputs:
-  mandatory_char:
-    description: 'Mandatory character'
-    default: 'n'
-  optional_chars:
-    description: 'Optional characters'
-    default: 'ceortu'
+on:
+  workflow_dispatch:
+    inputs:
+      mandatory_char:
+        description: 'Mandatory character'
+        required: true
+        default: 'n'
+      optional_chars:
+        description: 'Optional characters'
+        required: true
+        default: 'ceortu'
 
 jobs:
   build:
