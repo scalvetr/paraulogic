@@ -10,6 +10,8 @@ sudo apt install python3.9
 Mac
 ```shell
 brew install python@3.9
+brew install pyenv
+pyenv install 3.9.9
 ```
 
 ## Install dependencies
