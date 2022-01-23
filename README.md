@@ -17,9 +17,9 @@ pyenv install 3.9.9
 ## Install dependencies
 
 ```shell
-python -VV
-python -m site
-python -m pip install --upgrade unidecode
+python3 -VV
+python3 -m site
+python3 -m pip install --upgrade unidecode
 ```
 
 ## Run
@@ -28,5 +28,5 @@ python -m pip install --upgrade unidecode
 # assuming:
 # G is mandatory char
 # O, E, S, A, L and P are the optional chars
-python run.py g oesalp
+python3 run.py g oesalp
 ```
