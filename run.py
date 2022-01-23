@@ -16,6 +16,8 @@ def simplyfy(word):
 
 
 def match(word, mandatory_char, optional_chars):
+    if len(word) < 3:
+        return False
     simplified_word = simplyfy(word)
     remaining_characters = list(simplified_word)
     remaining_characters = [c for c in remaining_characters if not eqChar(c, mandatory_char)]
