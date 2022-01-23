@@ -1,10 +1,12 @@
 import csv
-import requests
-import unidecode
 import sys
+import unidecode
+# import requests
+
 
 def eqChar(char1, char2):
     return char1 == char2
+
 
 def simplyfy(word):
     return unidecode.unidecode(word)
@@ -25,19 +27,21 @@ def match(word, mandatory_char, optional_chars):
     return len(remaining_characters) == 0
 
 
-# Define the remote URL
-# https://raw.githubusercontent.com/Softcatala/catalan-dict-tools/master/resultats/lt/diccionari-dnv.txt
-url = "https://raw.githubusercontent.com/Softcatala/catalan-dict-tools/master/resultats/lt/diccionari.txt"
-# Send HTTP GET request via requests
-data = requests.get(url)
+# Option 1: Remote URL
+#url = "https://raw.githubusercontent.com/Softcatala/catalan-dict-tools/master/resultats/lt/diccionari.txt"
+#data = requests.get(url).text
+
+# Option 2: Local file
+url = "diccionari.txt"
+data = open(url, "r").read()
+
 # Convert to iterator by splitting on \n chars
-lines = data.text.splitlines()
+lines = data.splitlines()
 # Parse as CSV object
 reader = csv.reader(lines, delimiter=' ')
 
 mandatory_char = "n"
 optional_chars = "ceortu"
-
 
 arguments = sys.argv;
 if len(arguments) > 1:
@@ -57,5 +61,3 @@ for row in reader:
 result = list(dict.fromkeys(result))
 print("S'han trobat {} resultats".format(len(result)))
 print(result)
-
-
