@@ -1,5 +1,15 @@
 name: paraulogic
 
+on: push
+
+inputs:
+  mandatory_char:
+    description: 'Mandatory character'
+    default: 'n'
+  optional_chars:
+    description: 'Optional characters'
+    default: 'ceortu'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,4 +22,4 @@ jobs:
           python-version: 3.9 #install the python needed
       - name: execute py script # run the run.py to get the latest data
         run: |
-          python run.py
+          python run.py ${INPUT_MANDATORY_CHAR} ${INPUT_OPTIONAL_CHARS}
